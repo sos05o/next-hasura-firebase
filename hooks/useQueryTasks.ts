@@ -30,8 +30,7 @@ export const useQueryTasks = () => {
   }, [cookie.get('token')])
 
   return useQuery<Task[], Error>({
-    // @ts-ignore
-    queryKey: 'tasks',
+    queryKey: ['tasks'],
     queryFn: fetchTasks,
     staleTime: 0,
   })

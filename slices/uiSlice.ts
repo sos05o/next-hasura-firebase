@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {EditNews, EditTask} from "../types/types"
-import {RootState} from "../app/store";
+import {RootState} from "../app/store"
 
 export interface uiState {
   editedTask: EditTask

@@ -36,11 +36,9 @@ export const useAppMutate = () => {
     graphQLClient.request(CREATE_TASK, {title: title}),
     {
       onSuccess: (res) => {
-        // @ts-ignore
-        const previousTodos = queryClient.getQueriesData<Task[]>('tasks')
+        const previousTodos = queryClient.getQueryData<Task[]>(['tasks'])
         if (previousTodos) {
-          // @ts-ignore
-          queryClient.setQueryData('tasks', [
+          queryClient.setQueryData(['tasks'], [
             ...previousTodos,
             res.insert_tasks_one,
           ])
@@ -57,16 +55,13 @@ export const useAppMutate = () => {
     graphQLClient.request(UPDATE_TASK, task),
     {
       onSuccess: (res, variables) => {
-        // @ts-ignore
-        const previousTodos = queryClient.getQueriesData<Task[]>(`tasks`)
+        const previousTodos = queryClient.getQueryData<Task[]>(["tasks"])
         if (previousTodos) {
           queryClient.setQueryData<Task[]>(
-            // @ts-ignore
-            'tasks',
-            previousTodos.map((task) => {
-              // @ts-ignore
+            ['tasks'],
+            previousTodos.map((task) =>
               task.id === variables.id ? res.update_tasks_by_pk : task
-            })
+            )
           )
         }
         dispatch(resetEditedTask())
@@ -82,12 +77,10 @@ export const useAppMutate = () => {
     {
       onSuccess: (res, variables) => {
         // @ts-ignore
-        const previousTodos = queryClient.getQueriesData<Task[]>('tasks')
+        const previousTodos = queryClient.getQueryData<Task[]>(['tasks'])
         if (previousTodos) {
           queryClient.setQueryData<Task[]>(
-            // @ts-ignore
-            'tasks',
-            // @ts-ignore
+            ['tasks'],
             previousTodos.filter((task) => task.id !== variables)
           )
         }
@@ -100,11 +93,9 @@ export const useAppMutate = () => {
     graphQLClient.request(CREATE_NEWS, {content: content}),
     {
       onSuccess: (res) => {
-        // @ts-ignore
-        const previousNews = queryClient.getQueryData<News[]>('news')
+        const previousNews = queryClient.getQueryData<News[]>(['news'])
         if (previousNews) {
-          // @ts-ignore
-          queryClient.setQueryData('news', [
+          queryClient.setQueryData(['news'], [
             ...previousNews,
             res.insert_news_one,
           ])
@@ -121,14 +112,11 @@ export const useAppMutate = () => {
     graphQLClient.request(UPDATE_NEWS, news),
     {
       onSuccess: (res, variables) => {
-        // @ts-ignore
-        const previousNews = queryClient.getQueriesData<News[]>('news')
+        const previousNews = queryClient.getQueryData<News[]>(['news'])
         if (previousNews) {
           queryClient.setQueryData<News[]>(
-            // @ts-ignore
-            'news',
+            ['news'],
             previousNews.map((news) =>
-              // @ts-ignore
               news.id === variables.id ? res.update_news_by_pk : news
             )
           )
@@ -145,12 +133,10 @@ export const useAppMutate = () => {
     graphQLClient.request(DELETE_NEWS, {id: id}),
     {
       onSuccess: (res, variables) => {
-        // @ts-ignore
-        const previousNews = queryClient.getQueryData<News[]>('news')
+        const previousNews = queryClient.getQueryData<News[]>(['news'])
         if (previousNews) {
           queryClient.setQueryData<News[]>(
-            // @ts-ignore
-            'news',
+            ['news'],
             previousNews.filter((news) => news.id !== variables)
           )
         }

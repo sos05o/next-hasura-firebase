@@ -2,9 +2,9 @@ import Cookie from 'universal-cookie'
 import firebase from '../firebaseConfig'
 import {getAuth, signOut} from "firebase/auth"
 import {unSubMeta} from "./useUserChanged"
-import {useQueryClient} from "@tanstack/react-query";
-import {useDispatch} from "react-redux";
-import {resetEditedTask, resetEditedNews} from "../slices/uiSlice";
+import {useQueryClient} from "@tanstack/react-query"
+import {useDispatch} from "react-redux"
+import {resetEditedTask, resetEditedNews} from "../slices/uiSlice"
 
 const cookie = new Cookie()
 
